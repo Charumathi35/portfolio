@@ -311,4 +311,82 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // --- Trailing Custom Cursor Logic ---
+  const cursorDot = document.querySelector('.custom-cursor-dot');
+  const cursorOutline = document.querySelector('.custom-cursor-outline');
+
+  if (cursorDot && cursorOutline) {
+    let mouseX = 0, mouseY = 0;
+    let outlineX = 0, outlineY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      
+      cursorDot.style.left = `${mouseX}px`;
+      cursorDot.style.top = `${mouseY}px`;
+    });
+
+    function updateOutline() {
+      const ease = 0.15;
+      outlineX += (mouseX - outlineX) * ease;
+      outlineY += (mouseY - outlineY) * ease;
+
+      cursorOutline.style.left = `${outlineX}px`;
+      cursorOutline.style.top = `${outlineY}px`;
+
+      requestAnimationFrame(updateOutline);
+    }
+    requestAnimationFrame(updateOutline);
+
+    const hoverables = document.querySelectorAll('a, button, .skills-dot, .skills-slider-arrow, input, textarea, .logo');
+    hoverables.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursorDot.style.width = '14px';
+        cursorDot.style.height = '14px';
+        cursorDot.style.background = 'rgba(139, 92, 246, 0.4)';
+        cursorOutline.style.width = '55px';
+        cursorOutline.style.height = '55px';
+        cursorOutline.style.borderColor = '#fff';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursorDot.style.width = '8px';
+        cursorDot.style.height = '8px';
+        cursorDot.style.background = 'var(--accent-color)';
+        cursorOutline.style.width = '36px';
+        cursorOutline.style.height = '36px';
+        cursorOutline.style.borderColor = 'var(--accent-color)';
+      });
+    });
+  }
+
+  // --- Interactive 3D Perspective Card Tilts ---
+  const tiltElements = document.querySelectorAll('.project-scroll-card, .stacked-card, .skills-category-card, .visual-box');
+  
+  tiltElements.forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const width = rect.width;
+      const height = rect.height;
+      
+      const percentX = (x / width) - 0.5;
+      const percentY = (y / height) - 0.5;
+      
+      const maxRotateX = 12;
+      const maxRotateY = -12;
+      
+      const rotateX = percentY * maxRotateX;
+      const rotateY = percentX * maxRotateY;
+      
+      el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+    
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    });
+  });
 });

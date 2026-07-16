@@ -192,12 +192,16 @@ a {
 /* Scroll Entrance Animations */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: blur(8px);
+  transform: translateY(24px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.active {
   opacity: 1;
+  filter: blur(0);
   transform: translateY(0);
 }
 
@@ -356,8 +360,8 @@ header.scrolled {
 
 .visual-box {
   position: relative;
-  width: 320px;
-  height: 320px;
+  width: 450px;
+  height: 450px;
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   background: var(--accent-gradient);
   animation: morphing 15s ease-in-out infinite;
@@ -367,6 +371,9 @@ header.scrolled {
   align-items: center;
   overflow: hidden;
   border: 2px solid rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.1s ease-out;
 }
 
 @keyframes morphing {
@@ -902,6 +909,85 @@ header.scrolled {
     width: 280px;
     height: 280px;
   }
+}
+
+/* Custom Cursor Trail Styles */
+.custom-cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-color);
+  position: fixed;
+  border-radius: 50%;
+  z-index: 10000;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+}
+
+.custom-cursor-outline {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--accent-color);
+  position: fixed;
+  border-radius: 50%;
+  z-index: 9999;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
+}
+
+@media (min-width: 769px) {
+  body, a, button, input, textarea {
+    cursor: none;
+  }
+}
+
+/* Marquee Divider Styles */
+.marquee-divider {
+  overflow: hidden;
+  background: rgba(19, 26, 46, 0.4);
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+  padding: 24px 0;
+  white-space: nowrap;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  backdrop-filter: blur(8px);
+}
+
+.marquee-track {
+  display: inline-block;
+  animation: marqueeRun 35s linear infinite;
+  padding-left: 100%;
+}
+
+.marquee-track span {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.25);
+  text-shadow: 0 0 8px rgba(139, 92, 246, 0.08);
+}
+
+@keyframes marqueeRun {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Interactive 3D Perspective Card elements */
+.project-scroll-card, .stacked-card, .skills-category-card {
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+@media (max-width: 768px) {
   .project-scroll-card {
     flex: 0 0 100%;
   }
