@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (preloader) {
     setTimeout(() => {
       preloader.classList.add('fade-out');
-    }, 1100);
+    }, 1300);
   }
 
   // Sticky Navbar background & scroll state
@@ -48,16 +48,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Active link state on page (checks filename)
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-  const navItems = document.querySelectorAll('.nav-links a');
-  
-  navItems.forEach(item => {
-    item.classList.remove('active');
-    const href = item.getAttribute('href');
-    if (href === currentPath) {
-      item.classList.add('active');
-    }
+  // Smooth scroll for hash links
+  const smoothLinks = document.querySelectorAll('a[href^="#"]');
+  smoothLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        e.preventDefault();
+        const headerOffset = 90;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Active link state observer on scroll
+  const sections = document.querySelectorAll('section');
+  const navItems = document.querySelectorAll('.nav-links a[href^="#"]');
+
+  window.addEventListener('scroll', () => {
+    let current = 'hero';
+    const headerOffset = 120;
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - headerOffset;
+      if (window.scrollY >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navItems.forEach(item => {
+      item.classList.remove('active');
+      if (item.getAttribute('href') === `#${current}`) {
+        item.classList.add('active');
+      }
+    });
   });
 
   // Simple form submission animation helper
@@ -139,75 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
       slider.scrollLeft = scrollLeft - walk;
     });
   }
-
-  // Multi-page Scroll Navigation
-  const pages = ['index.html', 'about.html', 'experience.html', 'skills.html', 'projects.html', 'contact.html'];
-  const currentIndex = pages.indexOf(currentPath);
-  const transitionKey = 'portfolio_page_transitioning';
-  
-  // Clear transition lock on page load
-  localStorage.setItem(transitionKey, 'false');
-
-  function triggerPageTransition(targetPage) {
-    localStorage.setItem(transitionKey, 'true');
-    document.body.style.opacity = '0';
-    document.body.style.transform = 'translateY(-10px)';
-    document.body.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-    
-    setTimeout(() => {
-      window.location.href = targetPage;
-    }, 400);
-  }
-
-  // Desktop Scroll Wheel Listener
-  window.addEventListener('wheel', (e) => {
-    if (localStorage.getItem(transitionKey) === 'true') return;
-
-    const deltaY = e.deltaY;
-    const scrollHeight = document.documentElement.scrollHeight;
-    const clientHeight = document.documentElement.clientHeight;
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-
-    // Scroll Down & At Bottom -> Next Page
-    if (deltaY > 25 && (scrollTop + clientHeight >= scrollHeight - 3)) {
-      if (currentIndex < pages.length - 1) {
-        triggerPageTransition(pages[currentIndex + 1]);
-      }
-    }
-    // Scroll Up & At Top -> Prev Page
-    else if (deltaY < -25 && scrollTop <= 3) {
-      if (currentIndex > 0) {
-        triggerPageTransition(pages[currentIndex - 1]);
-      }
-    }
-  });
-
-  // Mobile Swipe Gesture Listeners
-  let touchStartY = 0;
-  window.addEventListener('touchstart', (e) => {
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
-
-  window.addEventListener('touchend', (e) => {
-    if (localStorage.getItem(transitionKey) === 'true') return;
-
-    const touchEndY = e.changedTouches[0].clientY;
-    const deltaY = touchStartY - touchEndY; // Positive: Swiped up (Scrolled down)
-
-    const scrollHeight = document.documentElement.scrollHeight;
-    const clientHeight = document.documentElement.clientHeight;
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-
-    if (deltaY > 60 && (scrollTop + clientHeight >= scrollHeight - 10)) {
-      if (currentIndex < pages.length - 1) {
-        triggerPageTransition(pages[currentIndex + 1]);
-      }
-    } else if (deltaY < -60 && scrollTop <= 10) {
-      if (currentIndex > 0) {
-        triggerPageTransition(pages[currentIndex - 1]);
-      }
-    }
-  }, { passive: true });
 
   // --- Canvas Particle Animation ---
   const canvas = document.getElementById('bg-canvas');
@@ -305,5 +268,47 @@ document.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(animate);
     }
     animate();
+  }
+
+  // --- Technical Expertise Slider logic ---
+  const skillsContainer = document.querySelector('.skills-slides-container');
+  const skillsSlides = document.querySelectorAll('.skills-slide');
+  const skillsLeftArrow = document.querySelector('.skills-slider-arrow.arrow-left');
+  const skillsRightArrow = document.querySelector('.skills-slider-arrow.arrow-right');
+  const skillsDots = document.querySelectorAll('.skills-dot');
+  
+  if (skillsContainer && skillsSlides.length > 0) {
+    let currentSlide = 0;
+    const totalSlides = skillsSlides.length;
+
+    function goToSlide(index) {
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      currentSlide = index;
+
+      skillsContainer.style.transform = `translateX(-${currentSlide * 20}%)`;
+
+      skillsDots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentSlide);
+      });
+    }
+
+    if (skillsLeftArrow) {
+      skillsLeftArrow.addEventListener('click', () => {
+        goToSlide(currentSlide - 1);
+      });
+    }
+
+    if (skillsRightArrow) {
+      skillsRightArrow.addEventListener('click', () => {
+        goToSlide(currentSlide + 1);
+      });
+    }
+
+    skillsDots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        goToSlide(idx);
+      });
+    });
   }
 });
