@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Academic and key development projects of Charumathi S.">
+  <title>Projects | Charumathi S</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="page-fade-in">
+  <div id="preloader"><div class="preloader-line"></div></div>
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="logo">
+        <span>&lt;</span>Charumathi <span>/&gt;</span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="mailto:charumathisaravanakumar@gmail.com" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.85rem;">Hire Me</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main style="padding-top: 120px;">
+    <section class="container">
+      <div class="reveal active">
+        <h2 class="section-title">Key Academic Projects</h2>
+        <p class="section-subtitle">Use your scroll wheel, trackpad, or swipe to browse through my featured project cards horizontally.</p>
+      </div>
+
+      <!-- Horizontal Scroll Deck -->
+      <div class="horizontal-scroll-container">
+        
+        <!-- Project 1 -->
+        <div class="project-scroll-card">
+          <div class="project-image">
+            <svg width="100%" height="100%" viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg" style="background:#131a2e;">
+              <rect width="400" height="220" fill="url(#pGrad1)" opacity="0.1"/>
+              <circle cx="200" cy="110" r="40" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="5 5"/>
+              <circle cx="200" cy="110" r="15" fill="#3B82F6"/>
+              <text x="50%" y="80%" fill="#ffffff" font-family="var(--font-heading)" font-weight="bold" font-size="18" text-anchor="middle">Vehicle Tracking & Reservation</text>
+              <defs>
+                <linearGradient id="pGrad1" x1="0" y1="0" x2="400" y2="220" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#8B5CF6"/>
+                  <stop offset="1" stop-color="#3B82F6"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="project-tag">Java</span>
+              <span class="project-tag">Web Technologies</span>
+              <span class="project-tag">GPS Logic</span>
+            </div>
+            <h3 class="project-title">Real-Time Vehicle Tracking & Reservation</h3>
+            <p class="project-desc">Developed a live vehicle monitoring web application featuring coordinate-based logic to simulate GPS tracking. Integrated dynamic map visualizations and an updating real-time UI layer to manage seat reservations seamlessly.</p>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-scroll-card">
+          <div class="project-image">
+            <svg width="100%" height="100%" viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg" style="background:#131a2e;">
+              <rect width="400" height="220" fill="url(#pGrad2)" opacity="0.1"/>
+              <path d="M200 70 L220 110 L200 150 L180 110 Z" fill="#EF4444" opacity="0.8"/>
+              <text x="50%" y="80%" fill="#ffffff" font-family="var(--font-heading)" font-weight="bold" font-size="18" text-anchor="middle">Centralized Blood Bank</text>
+              <defs>
+                <linearGradient id="pGrad2" x1="0" y1="0" x2="400" y2="220" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#3B82F6"/>
+                  <stop offset="1" stop-color="#10B981"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="project-tag">Database Optimization</span>
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">Alert System</span>
+            </div>
+            <h3 class="project-title">Centralized Blood Bank Management Platform</h3>
+            <p class="project-desc">Built a comprehensive platform managing donor records, real-time blood inventory matrices, and critical emergency requests. Implemented automated system alerts and real-time stock updates to ensure rapid resource matching.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer style="padding: 40px 0; text-align: center; border-top: 1px solid var(--card-border); font-size: 0.9rem; color: var(--text-muted); margin-top: 60px;">
+    <p>&copy; 2026 Charumathi S. All rights reserved.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
