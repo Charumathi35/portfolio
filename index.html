@@ -1,27 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Charumathi S - Full Stack Developer Portfolio. Specializing in Laravel, React, MySQL, and corporate application development.">
+  <meta name="description"
+    content="Charumathi S - Full Stack Developer Portfolio. Specializing in Laravel, React, MySQL, and corporate application development.">
   <title>Charumathi S | Full Stack Developer Portfolio</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="page-fade-in">
-  <div class="custom-cursor-dot"></div>
-  <div class="custom-cursor-outline"></div>
-  <div id="preloader">
-    <div class="preloader-panel preloader-top"></div>
-    <div class="preloader-panel preloader-bottom"></div>
-    <div class="preloader-line"></div>
+
+<body class="page-fade-in intro-active">
+
+  <!-- Interactive Intro Overlay (KellyDev Style) -->
+  <div id="intro-overlay">
+    <!-- Stage 1: Loading state -->
+    <div class="intro-loading">
+      <div class="loading-word">CHARUMATHI</div>
+      <div class="loading-progress-bar">
+        <div class="loading-progress"></div>
+      </div>
+      <div class="loading-percentage">0%</div>
+    </div>
+
+    <!-- Stage 2: Welcome and Philosophy state -->
+    <div class="intro-welcome">
+      <div class="intro-quote-container">
+        <p class="intro-quote">"Code is not just syntax, but a canvas where logic meets human experience."</p>
+        <p class="intro-subquote">— A Full Stack Developer's Philosophy</p>
+      </div>
+      <button class="intro-explore-btn">
+        <span>EXPLORE PORTFOLIO</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
   </div>
+
   <canvas id="bg-canvas"></canvas>
 
   <!-- Navigation Bar -->
   <header>
     <div class="navbar">
       <a href="#hero" class="logo">
-        <span>&lt;</span>Charumathi <span>/&gt;</span>
+        <span></span>Charumathi <span></span>
       </a>
       <button class="menu-toggle" aria-label="Toggle Navigation">
         <span></span>
@@ -34,7 +58,25 @@
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="mailto:charumathisaravanakumar@gmail.com" class="btn btn-secondary" style="padding: 8px 20px; font-size: 0.85rem;">Hire Me</a></li>
+        <li>
+          <button class="theme-toggle-btn" aria-label="Toggle Theme">
+            <!-- Sun Icon (visible in dark mode) -->
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path
+                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41">
+              </path>
+            </svg>
+            <!-- Moon Icon (visible in light mode) -->
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+          </button>
+        </li>
+        <!-- <li><a href="mailto:charumathisaravanakumar@gmail.com" class="btn btn-secondary"
+            style="padding: 8px 20px; font-size: 0.85rem;">Hire Me</a></li> -->
       </ul>
     </div>
   </header>
@@ -45,19 +87,27 @@
       <div class="hero-text reveal active">
         <span class="badge">Open for Opportunities</span>
         <h1>Hi, I'm <span class="gradient-text">Charumathi S</span></h1>
-        <h2 style="font-size: 1.8rem; margin: 10px 0 20px 0; font-weight: 500; color: var(--text-secondary);">Full Stack Developer</h2>
-        <p>Results-driven Full Stack Developer with corporate experience building, optimizing, and deploying production-ready web applications. Experienced in Laravel (PHP), React, MySQL, SQL Server, and WordPress development.</p>
+        <h2 style="font-size: 1.8rem; margin: 10px 0 20px 0; font-weight: 500; color: var(--text-secondary);">Full Stack
+          Developer</h2>
+        <p>Results-driven Full Stack Developer with corporate experience building, optimizing, and deploying
+          production-ready web applications. Experienced in Laravel (PHP), React, MySQL, SQL Server, and WordPress
+          development.</p>
         <div class="hero-actions">
           <a href="#projects" class="btn btn-primary">
             View My Projects
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
           </a>
           <a href="#contact" class="btn btn-secondary">Get In Touch</a>
         </div>
       </div>
       <div class="hero-visual reveal active">
         <div class="visual-box">
-          <img src="assets/avatar.png" alt="Charumathi S 3D Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+          <img src="assets/3d.png" alt="Charumathi S Professional 3D Avatar"
+            style="width: 100%; height: 100%; object-fit: cover;">
         </div>
       </div>
     </div>
@@ -66,7 +116,8 @@
   <!-- Marquee Ribbon -->
   <div class="marquee-divider">
     <div class="marquee-track">
-      <span>LARAVEL • REACT • WORDPRESS • PHP • JAVASCRIPT • MYSQL • GIT • GITHUB • POSTMAN • XAMPP • ORACLE CLOUD • LARAVEL • REACT • WORDPRESS • PHP • JAVASCRIPT • MYSQL • GIT • GITHUB • POSTMAN • XAMPP • ORACLE CLOUD</span>
+      <span>LARAVEL • REACT • WORDPRESS • PHP • JAVASCRIPT • MYSQL • GIT • GITHUB • POSTMAN • XAMPP • ORACLE CLOUD •
+        LARAVEL • REACT • WORDPRESS • PHP • JAVASCRIPT • MYSQL • GIT • GITHUB • POSTMAN • XAMPP • ORACLE CLOUD</span>
     </div>
   </div>
 
@@ -79,8 +130,11 @@
     <div class="about-grid">
       <div class="about-details reveal">
         <h3 style="font-size: 1.6rem; margin-bottom: 20px;">Corporate Experience & Disciplined Drive</h3>
-        <p>I combine strong engineering fundamentals with demonstrated leadership discipline to thrive in collaborative, product-driven teams. Having built, optimized, and deployed production-ready internal tools and client portals in corporate settings, I am adept at implementing state-driven logic and complex enterprise workflows.</p>
-        <p>Beyond coding, I bring a high level of discipline, strict time management, and team-player focus forged through my achievements in the National Cadet Corps (NCC), earning both 'B' and 'C' certificates.</p>
+        <p>I combine strong engineering fundamentals with demonstrated leadership discipline to thrive in collaborative,
+          product-driven teams. Having built, optimized, and deployed production-ready internal tools and client portals
+          in corporate settings, I am adept at implementing state-driven logic and complex enterprise workflows.</p>
+        <p>Beyond coding, I bring a high level of discipline, strict time management, and team-player focus forged
+          through my achievements in the National Cadet Corps (NCC), earning both 'B' and 'C' certificates.</p>
       </div>
       <div class="timeline reveal">
         <h3 style="font-size: 1.6rem; margin-bottom: 20px; font-family: var(--font-heading);">Education Timeline</h3>
@@ -88,7 +142,8 @@
           <div class="timeline-date">2022 - 2026</div>
           <h4 class="timeline-title">B.Tech in Information Technology</h4>
           <div class="timeline-institution">Dr. Mahalingam College of Engineering and Technology</div>
-          <p class="timeline-desc">CGPA: 8.2. Strong foundation in software architectures, systems design, and database systems.</p>
+          <p class="timeline-desc">CGPA: 8.2. Strong foundation in software architectures, systems design, and database
+            systems.</p>
         </div>
         <div class="timeline-item">
           <div class="timeline-date">2022</div>
@@ -110,32 +165,40 @@
 
       <!-- Sticky Stacked Cards Wrapper -->
       <div class="stacked-cards-container">
-        
+
         <!-- Experience Card 1 -->
         <div class="stacked-card card-index-1 reveal">
           <div class="card-header-flex">
             <div>
               <span class="card-timeline-date">Dec 2025 - Present</span>
-              <h3 class="card-job-title">Full Stack Developer <span style="font-weight: normal; color: var(--text-muted); font-size: 1.1rem;">(On-the-Job Trainee)</span></h3>
+              <h3 class="card-job-title">Full Stack Developer <span
+                  style="font-weight: normal; color: var(--text-muted); font-size: 1.1rem;">(On-the-Job Trainee)</span>
+              </h3>
               <div class="card-company-name">Pricol Corporate Services, Coimbatore</div>
             </div>
-            <span class="project-tag" style="background: rgba(16, 185, 129, 0.1); color: var(--success); font-size: 0.8rem; height: fit-content;">Promoted from Intern</span>
+            <span class="project-tag"
+              style="background: rgba(16, 185, 129, 0.1); color: var(--success); font-size: 0.8rem; height: fit-content;">Promoted
+              from Intern</span>
           </div>
-          
+
           <div class="card-body-content">
-            <p style="margin-bottom: 16px;">Currently engineering and maintaining concurrent live and in-development corporate applications across UAT, production, and deployment stages.</p>
+            <p style="margin-bottom: 16px;">Currently engineering and maintaining concurrent live and in-development
+              corporate applications across UAT, production, and deployment stages.</p>
             <div class="highlights-grid">
               <div class="highlight-item">
                 <strong>Incident Reporting & Order Management:</strong>
-                <p>Designed and developed an internal workflow portal using Laravel and SQL Server to handle live reporting logs, state-driven tracking, and supply chain order distributions.</p>
+                <p>Designed and developed an internal workflow portal using Laravel and SQL Server to handle live
+                  reporting logs, state-driven tracking, and supply chain order distributions.</p>
               </div>
               <div class="highlight-item">
                 <strong>Gate Entry System:</strong>
-                <p>Architected an internal gate management application using a Laravel backend integrated with SQL Server and MySQL, driven by a highly responsive JavaScript frontend.</p>
+                <p>Architected an internal gate management application using a Laravel backend integrated with SQL
+                  Server and MySQL, driven by a highly responsive JavaScript frontend.</p>
               </div>
               <div class="highlight-item">
                 <strong>PQR Vendor Portal:</strong>
-                <p>Built a robust React ticketing and vendor management system, optimizing ticket routing workflows from external vendors up to corporate quality heads.</p>
+                <p>Built a robust React ticketing and vendor management system, optimizing ticket routing workflows from
+                  external vendors up to corporate quality heads.</p>
               </div>
             </div>
           </div>
@@ -149,26 +212,33 @@
               <h3 class="card-job-title">Corporate Systems & Custom Integrations</h3>
               <div class="card-company-name">Pricol Corporate Services, Coimbatore</div>
             </div>
-            <span class="project-tag" style="background: rgba(139, 92, 246, 0.1); color: #a78bfa; font-size: 0.8rem; height: fit-content;">CMS & Portals</span>
+            <span class="project-tag"
+              style="background: rgba(139, 92, 246, 0.1); color: #a78bfa; font-size: 0.8rem; height: fit-content;">CMS &
+              Portals</span>
           </div>
-          
+
           <div class="card-body-content">
             <div class="highlights-grid">
               <div class="highlight-item">
                 <strong>Pricol Logistics Platform:</strong>
-                <p>Engineered advanced theme modifications, dynamic content structuring, and custom configurations on WordPress to construct a scalable digital presence aligned with corporate logistics branding.</p>
+                <p>Engineered advanced theme modifications, dynamic content structuring, and custom configurations on
+                  WordPress to construct a scalable digital presence aligned with corporate logistics branding.</p>
               </div>
               <div class="highlight-item">
                 <strong>Digital Transformation Portfolios:</strong>
-                <p>Consolidated multiple corporate websites into a unified web experience (Pricol Experia) utilizing advanced HTML, CSS, and JS. Developed the main Pricol Group company portal featuring immersive scroll-triggered animations.</p>
+                <p>Consolidated multiple corporate websites into a unified web experience (Pricol Experia) utilizing
+                  advanced HTML, CSS, and JS. Developed the main Pricol Group company portal featuring immersive
+                  scroll-triggered animations.</p>
               </div>
               <div class="highlight-item">
                 <strong>Cab Request System:</strong>
-                <p>Designed an internal booking portal with multi-level approval workflows and automated email notification triggers.</p>
+                <p>Designed an internal booking portal with multi-level approval workflows and automated email
+                  notification triggers.</p>
               </div>
               <div class="highlight-item">
                 <strong>HR Cat Expense App:</strong>
-                <p>Built a data entry and reporting application tailored for the PowerBI analytics team using Laravel.</p>
+                <p>Built a data entry and reporting application tailored for the PowerBI analytics team using Laravel.
+                </p>
               </div>
             </div>
           </div>
@@ -182,11 +252,13 @@
               <h3 class="card-job-title">Full Stack Development Intern</h3>
               <div class="card-company-name">Nandha Infotech, Coimbatore</div>
             </div>
-            <span class="project-tag" style="background: rgba(59, 130, 246, 0.1); color: #60a5fa; font-size: 0.8rem; height: fit-content;">Internship</span>
+            <span class="project-tag"
+              style="background: rgba(59, 130, 246, 0.1); color: #60a5fa; font-size: 0.8rem; height: fit-content;">Internship</span>
           </div>
-          
+
           <div class="card-body-content">
-            <p style="margin-bottom: 16px;">Gained foundational full-stack industry experience, constructing secure responsive systems and participating in client projects.</p>
+            <p style="margin-bottom: 16px;">Gained foundational full-stack industry experience, constructing secure
+              responsive systems and participating in client projects.</p>
             <div class="highlights-grid">
               <div class="highlight-item">
                 <strong>End-to-End Application:</strong>
@@ -194,11 +266,13 @@
               </div>
               <div class="highlight-item">
                 <strong>Authentication & CRUD:</strong>
-                <p>Implemented secure user verification layers, relational data storage systems, and complete CRUD operations.</p>
+                <p>Implemented secure user verification layers, relational data storage systems, and complete CRUD
+                  operations.</p>
               </div>
               <div class="highlight-item">
                 <strong>Debugging & Version Control:</strong>
-                <p>Managed source code using Git/GitHub version control workflows and systematically debugged cross-device UI issues.</p>
+                <p>Managed source code using Git/GitHub version control workflows and systematically debugged
+                  cross-device UI issues.</p>
               </div>
             </div>
           </div>
@@ -209,133 +283,192 @@
   </section>
 
   <!-- Skills Section -->
-  <section id="skills" style="padding: 100px 0; min-height: 100vh; display: flex; align-items: center; position: relative;">
+  <section id="skills"
+    style="padding: 100px 0; min-height: 100vh; display: flex; align-items: center; position: relative;">
     <div class="container" style="width: 100%;">
       <div class="reveal">
         <h2 class="section-title">Technical Expertise</h2>
-        <p class="section-subtitle">Core frameworks, engineering technologies, and databases I work with.</p>
+        <button id="cta-connect" class="connect-btn">Let's connect</button>
+
+        <div class="skills-drag-hint">
+          <svg class="hand-drag-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18H9M15 6H9M20 12H4M4 12l4-4M4 12l4 4M20 12l-4-4M20 12l-4 4" />
+          </svg>
+          <span>Drag card to slide &nbsp;&bull;&nbsp; Click tags for experience details</span>
+        </div>
       </div>
-      
+
       <!-- Skills Slider Wrapper -->
       <div class="skills-slider-wrapper reveal">
         <!-- Arrows -->
         <button class="skills-slider-arrow arrow-left" aria-label="Previous Slide">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
         </button>
         <button class="skills-slider-arrow arrow-right" aria-label="Next Slide">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
         </button>
 
-        <!-- Slides Container -->
-        <div class="skills-slides-container">
-          
-          <!-- Slide 1: Core Frameworks -->
-          <div class="skills-slide">
-            <div class="skills-category-card">
-              <h3>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-color); margin-bottom: -4px;"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                Core Frameworks
-              </h3>
-              <div class="skills-list">
-                <span class="skill-tag">Laravel (PHP)</span>
-                <span class="skill-tag">React.js</span>
-                <span class="skill-tag">WordPress</span>
+        <!-- Viewport wrapper to prevent overflow clippings for slide navigation arrows -->
+        <div class="skills-slider-viewport">
+          <!-- Slides Container -->
+          <div class="skills-slides-container">
+
+            <!-- Slide 1: Core Frameworks -->
+            <div class="skills-slide">
+              <div class="skills-category-card">
+                <h3>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round"
+                    style="color: var(--accent-color); margin-bottom: -4px;">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                  Core Frameworks
+                </h3>
+                <div class="skills-list">
+                  <span class="skill-tag">Laravel (PHP)</span>
+                  <span class="skill-tag">React.js</span>
+                  <span class="skill-tag">WordPress</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Slide 2: Languages & Web Core -->
-          <div class="skills-slide">
-            <div class="skills-category-card">
-              <h3>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-color); margin-bottom: -4px;"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-                Languages & Web Core
-              </h3>
-              <div class="skills-list">
-                <span class="skill-tag">PHP</span>
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">Java</span>
-                <span class="skill-tag">SQL</span>
-                <span class="skill-tag">HTML5</span>
-                <span class="skill-tag">CSS3</span>
+            <!-- Slide 2: Languages & Web Core -->
+            <div class="skills-slide">
+              <div class="skills-category-card">
+                <h3>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round"
+                    style="color: var(--accent-color); margin-bottom: -4px;">
+                    <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                    <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                    <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                    <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                  </svg>
+                  Languages & Web Core
+                </h3>
+                <div class="skills-list">
+                  <span class="skill-tag">PHP</span>
+                  <span class="skill-tag">JavaScript</span>
+                  <span class="skill-tag">Java</span>
+                  <span class="skill-tag">SQL</span>
+                  <span class="skill-tag">HTML5</span>
+                  <span class="skill-tag">CSS3</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Slide 3: Databases & Utilities -->
-          <div class="skills-slide">
-            <div class="skills-category-card">
-              <h3>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-color); margin-bottom: -4px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                Databases & Utilities
-              </h3>
-              <div class="skills-list">
-                <span class="skill-tag">MySQL</span>
-                <span class="skill-tag">SQL Server (SQLSRV)</span>
-                <span class="skill-tag">Git & GitLab</span>
-                <span class="skill-tag">VS Code</span>
-                <span class="skill-tag">Postman</span>
-                <span class="skill-tag">XAMPP</span>
+            <!-- Slide 3: Databases & Utilities -->
+            <div class="skills-slide">
+              <div class="skills-category-card">
+                <h3>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round"
+                    style="color: var(--accent-color); margin-bottom: -4px;">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="16"></line>
+                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                  </svg>
+                  Databases & Utilities
+                </h3>
+                <div class="skills-list">
+                  <span class="skill-tag">MySQL</span>
+                  <span class="skill-tag">SQL Server (SQLSRV)</span>
+                  <span class="skill-tag">Git & GitLab</span>
+                  <span class="skill-tag">VS Code</span>
+                  <span class="skill-tag">Postman</span>
+                  <span class="skill-tag">XAMPP</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Slide 4: Certifications -->
-          <div class="skills-slide">
-            <div class="skills-category-card">
-              <h3>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: -4px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                Certifications
-              </h3>
-              <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 20px;">
-                <li style="display: flex; gap: 10px; align-items: flex-start;">
-                  <span style="color: var(--accent-color); font-weight: bold;">•</span>
-                  <div><strong>OCI Generative AI Professional</strong> <span style="font-size: 0.85rem; color: var(--text-secondary);">(Oracle)</span></div>
-                </li>
-                <li style="display: flex; gap: 10px; align-items: flex-start;">
-                  <span style="color: var(--accent-color); font-weight: bold;">•</span>
-                  <div><strong>Fusion Cloud Application: HCM</strong> <span style="font-size: 0.85rem; color: var(--text-secondary);">(Oracle)</span></div>
-                </li>
-                <li style="display: flex; gap: 10px; align-items: flex-start;">
-                  <span style="color: var(--accent-color); font-weight: bold;">•</span>
-                  <div><strong>Crafting REST APIs Professional</strong></div>
-                </li>
-                <li style="display: flex; gap: 10px; align-items: flex-start;">
-                  <span style="color: var(--accent-color); font-weight: bold;">•</span>
-                  <div><strong>Industry 4.0 & Industrial IoT</strong> <span style="font-size: 0.85rem; color: var(--text-secondary);">(NPTEL)</span></div>
-                </li>
-                <li style="display: flex; gap: 10px; align-items: flex-start;">
-                  <span style="color: var(--accent-color); font-weight: bold;">•</span>
-                  <div><strong>Building a Product Strategy</strong></div>
-                </li>
-              </ul>
+            <!-- Slide 4: Certifications -->
+            <div class="skills-slide">
+              <div class="skills-category-card">
+                <h3>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: -4px;">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  Certifications
+                </h3>
+                <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 20px;">
+                  <li style="display: flex; gap: 10px; align-items: flex-start;">
+                    <span style="color: var(--accent-color); font-weight: bold;">•</span>
+                    <div><strong>OCI Generative AI Professional</strong> <span
+                        style="font-size: 0.85rem; color: var(--text-secondary);">(Oracle)</span></div>
+                  </li>
+                  <li style="display: flex; gap: 10px; align-items: flex-start;">
+                    <span style="color: var(--accent-color); font-weight: bold;">•</span>
+                    <div><strong>Fusion Cloud Application: HCM</strong> <span
+                        style="font-size: 0.85rem; color: var(--text-secondary);">(Oracle)</span></div>
+                  </li>
+                  <li style="display: flex; gap: 10px; align-items: flex-start;">
+                    <span style="color: var(--accent-color); font-weight: bold;">•</span>
+                    <div><strong>Crafting REST APIs Professional</strong></div>
+                  </li>
+                  <li style="display: flex; gap: 10px; align-items: flex-start;">
+                    <span style="color: var(--accent-color); font-weight: bold;">•</span>
+                    <div><strong>Industry 4.0 & Industrial IoT</strong> <span
+                        style="font-size: 0.85rem; color: var(--text-secondary);">(NPTEL)</span></div>
+                  </li>
+                  <li style="display: flex; gap: 10px; align-items: flex-start;">
+                    <span style="color: var(--accent-color); font-weight: bold;">•</span>
+                    <div><strong>Building a Product Strategy</strong></div>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
 
-          <!-- Slide 5: NCC & Leadership -->
-          <div class="skills-slide">
-            <div class="skills-category-card">
-              <h3>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: -4px;"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline></svg>
-                NCC & Extra-Curriculars
-              </h3>
-              <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 20px;">
-                <li style="display: flex; gap: 10px; align-items: flex-start;">
-                  <span style="color: var(--success); font-weight: bold;">•</span>
-                  <div><strong>NCC 'B' (Grade A) & 'C' (Grade B)</strong> <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 2px;">Demonstrated time-management and team orchestration.</div></div>
-                </li>
-                <li style="display: flex; gap: 10px; align-items: flex-start;">
-                  <span style="color: var(--success); font-weight: bold;">•</span>
-                  <div><strong>Combined Camps Leadership (CATC)</strong> <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 2px;">Represented unit and led drill orchestration.</div></div>
-                </li>
-                <li style="display: flex; gap: 10px; align-items: flex-start;">
-                  <span style="color: var(--success); font-weight: bold;">•</span>
-                  <div><strong>Seed Ball Event Coordinator</strong> <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 2px;">Environmental sustainability campaign.</div></div>
-                </li>
-              </ul>
+            <!-- Slide 5: NCC & Leadership -->
+            <div class="skills-slide">
+              <div class="skills-category-card">
+                <h3>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: -4px;">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                  </svg>
+                  NCC & Extra-Curriculars
+                </h3>
+                <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 20px;">
+                  <li style="display: flex; gap: 10px; align-items: flex-start;">
+                    <span style="color: var(--success); font-weight: bold;">•</span>
+                    <div><strong>NCC 'B' (Grade A) & 'C' (Grade B)</strong>
+                      <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 2px;">Demonstrated
+                        time-management and team orchestration.</div>
+                    </div>
+                  </li>
+                  <li style="display: flex; gap: 10px; align-items: flex-start;">
+                    <span style="color: var(--success); font-weight: bold;">•</span>
+                    <div><strong>Combined Camps Leadership (CATC)</strong>
+                      <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 2px;">Represented unit
+                        and led drill orchestration.</div>
+                    </div>
+                  </li>
+                  <li style="display: flex; gap: 10px; align-items: flex-start;">
+                    <span style="color: var(--success); font-weight: bold;">•</span>
+                    <div><strong>Seed Ball Event Coordinator</strong>
+                      <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 2px;">Environmental
+                        sustainability campaign.</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
 
         <!-- Slider Dots -->
@@ -356,24 +489,27 @@
     <div class="container">
       <div class="reveal">
         <h2 class="section-title">Key Academic Projects</h2>
-        <p class="section-subtitle">Use your scroll wheel, trackpad, or swipe to browse through my featured project cards horizontally.</p>
+        <p class="section-subtitle">Use your scroll wheel, trackpad, or swipe to browse through my featured project
+          cards horizontally.</p>
       </div>
 
       <!-- Horizontal Scroll Deck -->
       <div class="horizontal-scroll-container">
-        
+
         <!-- Project 1 -->
         <div class="project-scroll-card">
           <div class="project-image">
-            <svg width="100%" height="100%" viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg" style="background:#131a2e;">
-              <rect width="400" height="220" fill="url(#pGrad1)" opacity="0.1"/>
-              <circle cx="200" cy="110" r="40" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="5 5"/>
-              <circle cx="200" cy="110" r="15" fill="#3B82F6"/>
-              <text x="50%" y="80%" fill="#ffffff" font-family="var(--font-heading)" font-weight="bold" font-size="18" text-anchor="middle">Vehicle Tracking & Reservation</text>
+            <svg width="100%" height="100%" viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg"
+              style="background:#131a2e;">
+              <rect width="400" height="220" fill="url(#pGrad1)" opacity="0.1" />
+              <circle cx="200" cy="110" r="40" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="5 5" />
+              <circle cx="200" cy="110" r="15" fill="#3B82F6" />
+              <text x="50%" y="80%" fill="#ffffff" font-family="var(--font-heading)" font-weight="bold" font-size="18"
+                text-anchor="middle">Vehicle Tracking & Reservation</text>
               <defs>
                 <linearGradient id="pGrad1" x1="0" y1="0" x2="400" y2="220" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#8B5CF6"/>
-                  <stop offset="1" stop-color="#3B82F6"/>
+                  <stop stop-color="#8B5CF6" />
+                  <stop offset="1" stop-color="#3B82F6" />
                 </linearGradient>
               </defs>
             </svg>
@@ -385,21 +521,24 @@
               <span class="project-tag">GPS Logic</span>
             </div>
             <h3 class="project-title">Real-Time Vehicle Tracking & Reservation</h3>
-            <p class="project-desc">Developed a vehicle monitoring web application featuring coordinate-based GPS tracking simulation, dynamic map visualizer, and seat reservation logic.</p>
+            <p class="project-desc">Developed a vehicle monitoring web application featuring coordinate-based GPS
+              tracking simulation, dynamic map visualizer, and seat reservation logic.</p>
           </div>
         </div>
 
         <!-- Project 2 -->
         <div class="project-scroll-card">
           <div class="project-image">
-            <svg width="100%" height="100%" viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg" style="background:#131a2e;">
-              <rect width="400" height="220" fill="url(#pGrad2)" opacity="0.1"/>
-              <path d="M200 70 L220 110 L200 150 L180 110 Z" fill="#EF4444" opacity="0.8"/>
-              <text x="50%" y="80%" fill="#ffffff" font-family="var(--font-heading)" font-weight="bold" font-size="18" text-anchor="middle">Centralized Blood Bank</text>
+            <svg width="100%" height="100%" viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg"
+              style="background:#131a2e;">
+              <rect width="400" height="220" fill="url(#pGrad2)" opacity="0.1" />
+              <path d="M200 70 L220 110 L200 150 L180 110 Z" fill="#EF4444" opacity="0.8" />
+              <text x="50%" y="80%" fill="#ffffff" font-family="var(--font-heading)" font-weight="bold" font-size="18"
+                text-anchor="middle">Centralized Blood Bank</text>
               <defs>
                 <linearGradient id="pGrad2" x1="0" y1="0" x2="400" y2="220" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#3B82F6"/>
-                  <stop offset="1" stop-color="#10B981"/>
+                  <stop stop-color="#3B82F6" />
+                  <stop offset="1" stop-color="#10B981" />
                 </linearGradient>
               </defs>
             </svg>
@@ -411,7 +550,8 @@
               <span class="project-tag">Alert System</span>
             </div>
             <h3 class="project-title">Centralized Blood Bank Management Platform</h3>
-            <p class="project-desc">Built a donor record tracker, real-time inventory matrix, and alert match system ensuring quick resource connection for emergency blood requests.</p>
+            <p class="project-desc">Built a donor record tracker, real-time inventory matrix, and alert match system
+              ensuring quick resource connection for emergency blood requests.</p>
           </div>
         </div>
 
@@ -428,20 +568,31 @@
     <div class="contact-grid">
       <div class="contact-info reveal">
         <h3>Contact Details</h3>
-        <p>I am actively seeking full-time roles in full-stack engineering and product development. Feel free to contact me directly.</p>
+        <p>I am actively seeking full-time roles in full-stack engineering and product development. Feel free to contact
+          me directly.</p>
         <div class="contact-methods">
           <div class="contact-method">
             <div class="contact-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
             </div>
             <div>
               <div class="contact-label">Email Me</div>
-              <a href="mailto:charumathisaravanakumar@gmail.com" class="contact-value">charumathisaravanakumar@gmail.com</a>
+              <a href="mailto:charumathisaravanakumar@gmail.com"
+                class="contact-value">charumathisaravanakumar@gmail.com</a>
             </div>
           </div>
           <div class="contact-method">
             <div class="contact-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                </path>
+              </svg>
             </div>
             <div>
               <div class="contact-label">Call Me</div>
@@ -450,7 +601,13 @@
           </div>
           <div class="contact-method">
             <div class="contact-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-10 10c0 5.25 4.75 10 10 10s10-4.75 10-10a10 10 0 0 0-10-10zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"></path><path d="M12 6v6l4 2"></path></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M12 2a10 10 0 0 0-10 10c0 5.25 4.75 10 10 10s10-4.75 10-10a10 10 0 0 0-10-10zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16z">
+                </path>
+                <path d="M12 6v6l4 2"></path>
+              </svg>
             </div>
             <div>
               <div class="contact-label">Location</div>
@@ -458,18 +615,28 @@
             </div>
           </div>
           <div class="contact-method" style="margin-top: 10px;">
-            <a href="#" class="btn btn-secondary" style="gap: 8px;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            <a href="https://www.linkedin.com/in/charumathi-s-a4aa7225b/" class="btn btn-secondary" style="gap: 8px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
               LinkedIn Profile
             </a>
-            <a href="#" class="btn btn-secondary" style="gap: 8px;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              GitHub Portfolio
+            <a href="https://github.com/Charumathi35" class="btn btn-secondary" style="gap: 8px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
+              </svg>
+              GitHub
             </a>
           </div>
         </div>
       </div>
-      
+
       <form class="contact-form reveal">
         <div class="form-group">
           <label for="name">Your Name</label>
@@ -483,16 +650,30 @@
           <label for="message">Message</label>
           <textarea id="message" rows="5" required placeholder="Write your message..."></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="justify-content: center; width: 100%;">Send Message</button>
+        <button type="submit" class="btn btn-primary" style="justify-content: center; width: 100%;">Send
+          Message</button>
       </form>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer style="padding: 40px 0; text-align: center; border-top: 1px solid var(--card-border); font-size: 0.9rem; color: var(--text-muted);">
+  <footer
+    style="padding: 40px 0; text-align: center; border-top: 1px solid var(--card-border); font-size: 0.9rem; color: var(--text-muted);">
     <p>&copy; 2026 Charumathi S. All rights reserved.</p>
   </footer>
 
+  <!-- Scroll-Driven Animated Character Companion -->
+  <div id="scroll-character" class="char-state-idle">
+    <div class="char-bubble" id="char-bubble">
+      <span id="char-bubble-text">Hi there! 👋</span>
+    </div>
+    <div class="char-figure">
+      <div class="char-shadow"></div>
+      <img src="assets/3d.png" id="char-img" alt="Animated Character Companion" draggable="false" />
+    </div>
+  </div>
+
   <script src="js/app.js"></script>
 </body>
+
 </html>
