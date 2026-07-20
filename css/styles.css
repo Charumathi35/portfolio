@@ -814,8 +814,65 @@ header.scrolled {
 .project-desc {
   color: var(--text-secondary);
   font-size: 0.95rem;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
+
+/* Project meta bar: tech pills + GitHub link */
+.project-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--card-border);
+  flex-wrap: wrap;
+}
+
+.project-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tech-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 50px;
+  text-transform: uppercase;
+}
+
+.tech-pill.tech-php  { background: rgba(119, 123, 179, 0.18); color: #9b9fe0; border: 1px solid rgba(119,123,179,0.3); }
+.tech-pill.tech-html { background: rgba(228, 77, 38, 0.15); color: #f06529; border: 1px solid rgba(228,77,38,0.3); }
+.tech-pill.tech-css  { background: rgba(38, 77, 228, 0.15); color: #4a90d9; border: 1px solid rgba(38,77,228,0.3); }
+.tech-pill.tech-mysql { background: rgba(0, 117, 143, 0.15); color: #00a8c8; border: 1px solid rgba(0,117,143,0.3); }
+
+.project-github-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  padding: 6px 14px;
+  border-radius: 50px;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 1px solid var(--card-border);
+  transition: var(--transition-smooth);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.project-github-btn:hover {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
 
 /* Contact Section */
 .contact-grid {
@@ -906,6 +963,104 @@ header.scrolled {
   outline: none;
   border-color: var(--accent-color);
   box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.15);
+}
+
+/* Input invalid state — shown after JS validation */
+.form-group input.input-invalid,
+.form-group textarea.input-invalid {
+  border-color: #ef4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.2);
+}
+
+/* Per-field inline error text */
+.field-error {
+  font-size: 0.8rem;
+  color: #ef4444;
+  font-family: var(--font-heading);
+  min-height: 1em;
+  margin-top: 4px;
+  display: block;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.field-error.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Form-level status banner (success / error) */
+.form-status {
+  border-radius: 10px;
+  padding: 0;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.35s ease, padding 0.35s ease, margin-bottom 0.35s ease;
+}
+
+.form-status.visible {
+  max-height: 120px;
+  opacity: 1;
+  padding: 14px 18px;
+  margin-bottom: 8px;
+}
+
+.form-status.status-success {
+  background: rgba(110, 127, 69, 0.12);
+  border: 1px solid rgba(110, 127, 69, 0.35);
+  color: var(--success);
+}
+
+.form-status.status-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+/* Submit button — sending/spinner state */
+#form-submit-btn {
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth), opacity 0.2s;
+}
+
+#form-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+#form-submit-btn .btn-label {
+  transition: opacity 0.2s ease;
+}
+
+#form-submit-btn .btn-spinner {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+#form-submit-btn.sending .btn-label {
+  opacity: 0.6;
+}
+
+#form-submit-btn.sending .btn-spinner {
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /* Technical Expertise Slider Styles */

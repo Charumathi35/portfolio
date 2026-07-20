@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Theme Switching Logic
   const themeToggleBtns = document.querySelectorAll('.theme-toggle-btn');
-  
+
   // Get active theme from localStorage or system prefers
   const getPreferredTheme = () => {
     const savedTheme = localStorage.getItem('theme');
@@ -48,13 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
       let progress = 0;
       const intervalTime = 15; // ms
       const increment = 1.5;
-      
+
       const loadingInterval = setInterval(() => {
         progress += increment;
         if (progress >= 100) {
           progress = 100;
           clearInterval(loadingInterval);
-          
+
           // Transition to quote stage
           setTimeout(() => {
             if (introLoading) introLoading.style.opacity = '0';
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 500);
           }, 400);
         }
-        
+
         // Update UI
         if (loadingProgress) loadingProgress.style.width = `${progress}%`;
         if (loadingPercentage) loadingPercentage.textContent = `${Math.floor(progress)}%`;
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         exploreBtn.addEventListener('click', () => {
           introOverlay.classList.add('fade-out');
           document.body.classList.remove('intro-active');
-          
+
           // Trigger page fade-in and element reveals
           const heroText = document.querySelector('.hero-text');
           const heroVisual = document.querySelector('.hero-visual');
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Smooth scroll for hash links
   const smoothLinks = document.querySelectorAll('a[href^="#"]');
   smoothLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
+    link.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
       if (targetId === '#') return;
       const targetElement = document.querySelector(targetId);
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
     let current = 'hero';
     const headerOffset = 120;
-    
+
     sections.forEach(section => {
       const sectionTop = section.offsetTop - headerOffset;
       if (window.scrollY >= sectionTop) {
@@ -176,32 +176,175 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Simple form submission animation helper
-  const contactForm = document.querySelector('.contact-form');
+  // =========================================================================
+  // EMAILJS — Contact Form Integration
+  // =========================================================================
+  // STEP 1: Sign up at https://www.emailjs.com (free tier: 200 emails/month)
+  // STEP 2: Create an Email Service (Gmail, Outlook, etc.) → copy the Service ID
+  // STEP 3: Create an Email Template — use these variables in the template body:
+  //           {{from_name}}  — sender's name
+  //           {{reply_to}}   — sender's email  (also set as Reply-To in template)
+  //           {{message}}    — the message body
+  // STEP 4: Copy your Public Key from Account → API Keys
+  // STEP 5: Replace the three placeholder strings below with your real values.
+  // =========================================================================
+
+  // Retrieve keys from CONFIG object or fallback
+  const EMAILJS_PUBLIC_KEY  = typeof CONFIG !== 'undefined' ? CONFIG.EMAILJS_PUBLIC_KEY  : 'YOUR_PUBLIC_KEY';
+  const EMAILJS_SERVICE_ID  = typeof CONFIG !== 'undefined' ? CONFIG.EMAILJS_SERVICE_ID  : 'YOUR_SERVICE_ID';
+  const EMAILJS_TEMPLATE_ID = typeof CONFIG !== 'undefined' ? CONFIG.EMAILJS_TEMPLATE_ID : 'YOUR_TEMPLATE_ID';
+
+  // Initialise EmailJS with your public key
+  if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  } else {
+    console.warn('EmailJS SDK failed to load or keys are missing.');
+  }
+
+  // ── DOM references ──────────────────────────────────────────────────────
+  const contactForm = document.getElementById('contact-form');
+  const formStatus = document.getElementById('form-status');
+  const submitBtn = document.getElementById('form-submit-btn');
+  const btnLabel = submitBtn ? submitBtn.querySelector('.btn-label') : null;
+
+  const nameInput = document.getElementById('contact-name');
+  const emailInput = document.getElementById('contact-email');
+  const messageInput = document.getElementById('contact-message');
+
+  const nameError = document.getElementById('name-error');
+  const emailError = document.getElementById('email-error');
+  const messageError = document.getElementById('message-error');
+
+  // ── Helper: show / hide a field-level error ─────────────────────────────
+  function setFieldError(inputEl, errorEl, msg) {
+    if (msg) {
+      inputEl.classList.add('input-invalid');
+      errorEl.textContent = msg;
+      errorEl.classList.add('visible');
+    } else {
+      inputEl.classList.remove('input-invalid');
+      errorEl.textContent = '';
+      errorEl.classList.remove('visible');
+    }
+  }
+
+  // ── Helper: show the form-level status banner ────────────────────────────
+  function showFormStatus(type, message) {
+    formStatus.textContent = message;
+    formStatus.className = `form-status visible status-${type}`;
+  }
+
+  function hideFormStatus() {
+    formStatus.className = 'form-status';
+    formStatus.textContent = '';
+  }
+
+  // ── Helper: email format check ───────────────────────────────────────────
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+  }
+
+  // ── Validate all fields; returns true if all pass ───────────────────────
+  function validateForm() {
+    let valid = true;
+
+    const nameVal = nameInput.value.trim();
+    const emailVal = emailInput.value.trim();
+    const messageVal = messageInput.value.trim();
+
+    // Name
+    if (!nameVal) {
+      setFieldError(nameInput, nameError, 'Please enter your name.');
+      valid = false;
+    } else if (nameVal.length < 2) {
+      setFieldError(nameInput, nameError, 'Name must be at least 2 characters.');
+      valid = false;
+    } else {
+      setFieldError(nameInput, nameError, '');
+    }
+
+    // Email
+    if (!emailVal) {
+      setFieldError(emailInput, emailError, 'Please enter your email address.');
+      valid = false;
+    } else if (!isValidEmail(emailVal)) {
+      setFieldError(emailInput, emailError, 'Please enter a valid email address.');
+      valid = false;
+    } else {
+      setFieldError(emailInput, emailError, '');
+    }
+
+    // Message
+    if (!messageVal) {
+      setFieldError(messageInput, messageError, 'Please write a message.');
+      valid = false;
+    } else if (messageVal.length < 10) {
+      setFieldError(messageInput, messageError, 'Message must be at least 10 characters.');
+      valid = false;
+    } else {
+      setFieldError(messageInput, messageError, '');
+    }
+
+    return valid;
+  }
+
+  // ── Clear field errors when the user starts typing again ────────────────
+  if (nameInput) nameInput.addEventListener('input', () => setFieldError(nameInput, nameError, ''));
+  if (emailInput) emailInput.addEventListener('input', () => setFieldError(emailInput, emailError, ''));
+  if (messageInput) messageInput.addEventListener('input', () => setFieldError(messageInput, messageError, ''));
+
+  // ── Main submit handler ──────────────────────────────────────────────────
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
-      const submitBtn = contactForm.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerHTML;
-      
+      hideFormStatus();
+
+      // 1. Client-side validation
+      if (!validateForm()) {
+        showFormStatus('error', '⚠️ Please fix the errors above before sending.');
+        return;
+      }
+
+      // 2. Guard: ensure EmailJS loaded
+      if (typeof emailjs === 'undefined') {
+        showFormStatus('error', '❌ Mail service unavailable. Please email me directly at charumathisaravanakumar@gmail.com');
+        return;
+      }
+
+      // 3. Set sending state
       submitBtn.disabled = true;
-      submitBtn.innerHTML = 'Sending...';
+      submitBtn.classList.add('sending');
+      if (btnLabel) btnLabel.textContent = 'Sending…';
 
-      setTimeout(() => {
-        submitBtn.innerHTML = 'Message Sent Successfully!';
-        submitBtn.style.background = 'var(--success)';
-        submitBtn.style.boxShadow = '0 4px 20px rgba(16, 185, 129, 0.3)';
-        
+      try {
+        // 4. Send via EmailJS — passes the entire form element so field `name` attrs
+        //    map directly to template variables (from_name, reply_to, message).
+        await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, contactForm);
+
+        // 5. Success
+        showFormStatus('success', '✅ Message sent! I\'ll get back to you soon.');
         contactForm.reset();
+        // Clear any lingering invalid states after reset
+        [nameInput, emailInput, messageInput].forEach(el => el && el.classList.remove('input-invalid'));
+        [nameError, emailError, messageError].forEach(el => el && el.classList.remove('visible'));
 
-        setTimeout(() => {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalText;
-          submitBtn.style.background = 'var(--accent-gradient)';
-          submitBtn.style.boxShadow = '0 4px 20px rgba(139, 92, 246, 0.3)';
-        }, 3000);
-      }, 1500);
+        // Auto-dismiss success banner after 6 seconds
+        setTimeout(hideFormStatus, 6000);
+
+      } catch (error) {
+        // 6. Error — log for debugging, show friendly message to visitor
+        console.error('EmailJS send error:', error);
+        const errMsg = error && error.text
+          ? `❌ Failed to send (${error.text}). Please try again or email me directly.`
+          : '❌ Something went wrong. Please email me at charumathisaravanakumar@gmail.com';
+        showFormStatus('error', errMsg);
+
+      } finally {
+        // 7. Always restore button state
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('sending');
+        if (btnLabel) btnLabel.textContent = 'Send Message';
+      }
     });
   }
 
@@ -236,19 +379,19 @@ document.addEventListener('DOMContentLoaded', () => {
       startX = e.pageX - slider.offsetLeft;
       scrollLeft = slider.scrollLeft;
     });
-    
+
     slider.addEventListener('mouseleave', () => {
       isDown = false;
       slider.classList.remove('active-drag');
     });
-    
+
     slider.addEventListener('mouseup', () => {
       isDown = false;
       slider.classList.remove('active-drag');
     });
-    
+
     slider.addEventListener('mousemove', (e) => {
-      if(!isDown) return;
+      if (!isDown) return;
       e.preventDefault();
       const x = e.pageX - slider.offsetLeft;
       const walk = (x - startX) * 1.5; // Scroll speed modifier
@@ -362,7 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const skillsLeftArrow = document.querySelector('.skills-slider-arrow.arrow-left');
   const skillsRightArrow = document.querySelector('.skills-slider-arrow.arrow-right');
   const skillsDots = document.querySelectorAll('.skills-dot');
-  
+
   if (skillsContainer && skillsSlides.length > 0) {
     let currentSlide = 0;
     const totalSlides = skillsSlides.length;
@@ -525,10 +668,20 @@ document.addEventListener('DOMContentLoaded', () => {
       percent: 85,
       projects: 'Pricol Corporate internal databases, transaction procedures, and enterprise auditing logs.'
     },
-    'git & gitlab': {
+    'git': {
       level: 'Advanced Expertise',
       percent: 85,
-      projects: 'Branch management, code review tracking, merge resolution, and collaborative dev workflows.'
+      projects: 'Branch management, merge resolution, and collaborative dev workflows.'
+    },
+    'github': {
+      level: 'Advanced Expertise',
+      percent: 85,
+      projects: 'Repository hosting, code review tracking, pull requests, and project version management.'
+    },
+    'gitlab': {
+      level: 'Advanced Expertise',
+      percent: 85,
+      projects: 'Branch management, code review tracking, merge resolution, and collaborative dev workflows at Pricol.'
     },
     'vs code': {
       level: 'Expert',
@@ -647,28 +800,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Interactive 3D Perspective Card Tilts ---
   const tiltElements = document.querySelectorAll('.project-scroll-card, .stacked-card, .skills-category-card, .visual-box');
-  
+
   tiltElements.forEach(el => {
     el.addEventListener('mousemove', (e) => {
       const rect = el.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      
+
       const width = rect.width;
       const height = rect.height;
-      
+
       const percentX = (x / width) - 0.5;
       const percentY = (y / height) - 0.5;
-      
+
       const maxRotateX = 12;
       const maxRotateY = -12;
-      
+
       const rotateX = percentY * maxRotateX;
       const rotateY = percentX * maxRotateY;
-      
+
       el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
     });
-    
+
     el.addEventListener('mouseleave', () => {
       el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     });
@@ -697,12 +850,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Map each section id → { state, message }
     const sectionStates = [
-      { id: 'hero',       state: 'char-state-idle',  msg: "Hi there! 👋" },
-      { id: 'about',      state: 'char-state-wave',  msg: "Nice to meet you! 😊" },
-      { id: 'experience', state: 'char-state-work',  msg: "Hard at work! 💼" },
-      { id: 'skills',     state: 'char-state-point', msg: "Check these out! 🎯" },
-      { id: 'projects',   state: 'char-state-look',  msg: "Ooh, cool projects! 🔍" },
-      { id: 'contact',    state: 'char-state-bye',   msg: "Let's connect! ✉️" },
+      { id: 'hero', state: 'char-state-idle', msg: "Hi there! 👋" },
+      { id: 'about', state: 'char-state-wave', msg: "Nice to meet you! 😊" },
+      { id: 'experience', state: 'char-state-work', msg: "Hard at work! 💼" },
+      { id: 'skills', state: 'char-state-point', msg: "Check these out! 🎯" },
+      { id: 'projects', state: 'char-state-look', msg: "Ooh, cool projects! 🔍" },
+      { id: 'contact', state: 'char-state-bye', msg: "Let's connect! ✉️" },
     ];
 
     let currentState = '';
@@ -723,7 +876,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contactSection.scrollIntoView({ behavior: 'smooth' });
       }
     });
-      // Click on CTA button to jump to contact section
+    // Click on CTA button to jump to contact section
     const ctaBtn = document.getElementById('cta-connect');
     if (ctaBtn) {
       ctaBtn.addEventListener('click', () => {
